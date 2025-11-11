@@ -1,7 +1,7 @@
 // Load environment (helpful for local testing; Vercel injects env vars at runtime)
 require('dotenv').config()
 
-const app = require('./src/app')
+const app = require('../app')
 const { connect } = require('../src/config/db')
 
 // Try to connect to MongoDB when the function is initialized in serverless.
