@@ -20,7 +20,7 @@ const navigate=useNavigate()
     e.preventDefault();
   try{
 
-    const res=await api.post('/api',form);
+    const res=await api.post('/first',form);
 
 
     //     setData(prev => [...prev, res.data.data]); // immediately update list

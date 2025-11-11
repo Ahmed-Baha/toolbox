@@ -37,7 +37,7 @@ async function main() {
   await mongoose.connect(process.env.MONGODB_URI);
 }
 
-app.get('/api',async (req,res)=>{
+app.get('/api/first',async (req,res)=>{
   try {
     // return all campgrounds
     const camps = await Campground.find({});
@@ -49,7 +49,7 @@ app.get('/api',async (req,res)=>{
 })
 
 
-app.post('/api',async (req,res)=>{
+app.post('/api/first',async (req,res)=>{
     const { name, description, location,price }=req.body
     console.log('recieved data',req.body);
     const newCamp=await new Campground({ name, description, location,price })
