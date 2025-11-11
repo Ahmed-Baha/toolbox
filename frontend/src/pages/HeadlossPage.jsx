@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Form, InputGroup, Button, Table } from "react-bootstrap";
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3003';
 
 export default function HeadLossPage() {
   const [hazelForm, setHazelForm] = useState({ L: "", Q: "", D: "", C: "" });

@@ -3,7 +3,11 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import {InputGroup} from 'react-bootstrap'
 import {Form} from 'react-bootstrap'
+ 
 import api from '../api/client'
+=======
+
+
 export default function FormPage(){
       const [form, setForm] = useState({
   name: '',
@@ -15,7 +19,10 @@ const navigate=useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault();
   try{
+
     const res=await api.post('/api',form);
+
+
     //     setData(prev => [...prev, res.data.data]); // immediately update list
     // setForm({ name:'', location:'', price:'' });
   navigate('/display')
