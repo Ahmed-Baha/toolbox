@@ -17,6 +17,7 @@ main().then(() => console.log('db connected')).catch(err => console.log(err));
 
 async function main() {
   await mongoose.connect(process.env.MONGODB_URI);
+}
 
 app.get('/api',async (req,res)=>{
   try {
@@ -46,7 +47,7 @@ app.post('/api/headloss', (req, res) => {
   }
 
 
-  
+
 
   // Convert units: L (m), D (mm → m), Q (L/s → m³/s)
   const Dm = D / 1000;
@@ -105,9 +106,5 @@ app.post("/api/elevation", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch elevation data" });
   }
 });
-}
-
 module.exports = app;
-
-// app.listen(3003,()=>console.log('server is connected')
-// )
+// Do not call app.listen here! Vercel will handle the serverless function export.
