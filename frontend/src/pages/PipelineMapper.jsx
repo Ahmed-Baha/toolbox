@@ -6,6 +6,8 @@ import "leaflet/dist/leaflet.css";
 import "leaflet-draw/dist/leaflet.draw.css";
 import { Table } from "react-bootstrap";
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3003';
+
 export default function PipelineMapper() {
   const [coords, setCoords] = useState([]);
   const [elevations, setElevations] = useState([]);
@@ -25,7 +27,7 @@ export default function PipelineMapper() {
 
     // Fetch elevation data from backend
     try {
-      const res = await axios.post("/api/elevation", { coordinates });
+      const res = await axios.post(`${API_URL}/api/elevation`, { coordinates });
       setElevations(res.data);
       console.log("Elevation data:", res.data);
     } catch (err) {

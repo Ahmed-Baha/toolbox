@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server:{
     proxy:{
-      '/api':'https://toolbox-nrr9bwlsc-ahmed-bahas-projects.vercel.app/api'
+      '/api':'http://localhost:3003'
     }
   }
 })

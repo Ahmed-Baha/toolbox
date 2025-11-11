@@ -5,11 +5,10 @@ const mongoose = require('mongoose')
 const Campground = require('./models/campgrounds')
 const cors = require('cors')
 const axios = require("axios")
-const allowedOrigins = [
-  'http://localhost:5173',                    // Vite dev server
-  'http://localhost:3003',                    // Local production build
-  'https://toolbox-rqhu950n1-ahmed-bahas-projects.vercel.app/'         // Replace with your Vercel domain
-]
+const allowedOrigins =
+  process.env.NODE_ENV === 'production'
+    ? ['https://toolbox-rqhu950n1-ahmed-bahas-projects.vercel.app']
+    : ['http://localhost:5173']
 
 
 
