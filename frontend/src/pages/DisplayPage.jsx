@@ -6,7 +6,7 @@ export default function DisplayPage(){
      const [customers, setCustomers] = useState([]);
      useEffect(()=>{
     api
-    .get('/api')
+    .get('/')
 
 
 
