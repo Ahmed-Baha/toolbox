@@ -7,7 +7,7 @@ const cors = require('cors')
 const axios = require("axios")
 const allowedOrigins =
   process.env.NODE_ENV === 'production'
-    ? ['https://toolbox2-cgz5zuszn-ahmed-bahas-projects.vercel.app', 'https://toolbox-rqhu950n1-ahmed-bahas-projects.vercel.app']
+    ? ['https://toolbox2-seven.vercel.app']
     : ['http://localhost:5173', 'http://localhost:3000']
 
 
