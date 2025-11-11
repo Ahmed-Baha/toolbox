@@ -1,15 +1,11 @@
 import { useEffect,useState } from "react";
 import axios from 'axios';
-
 import api from '../api/client'
 export default function DisplayPage(){
      const [customers, setCustomers] = useState([]);
      useEffect(()=>{
     api
-    .get('/')
-
-
-
+    .get('/api')
     .then((res)=>{console.log(res);setCustomers(res.data)})
     .catch((e)=>{console.log(e);
        })
