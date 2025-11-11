@@ -5,7 +5,7 @@ export default function DisplayPage(){
      const [customers, setCustomers] = useState([]);
      useEffect(()=>{
     api
-    .get('/first')
+    .get('/api/first')
     .then((res)=>{console.log(res);setCustomers(res.data)})
     .catch((e)=>{console.log(e);
        })

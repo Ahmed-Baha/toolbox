@@ -14,7 +14,7 @@ export default function HeadLossPage() {
   const handleHazelSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await api.post("/headloss", hazelForm);
+      const res = await api.post("/api/headloss", hazelForm);
       setHazelResult(res.data);
     } catch (err) {
       console.error(err);
@@ -25,7 +25,7 @@ export default function HeadLossPage() {
   const handleDarcySubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await api.post("/darcy", darcyForm);
+      const res = await api.post("/api/darcy", darcyForm);
       setDarcyResult(res.data);
     } catch (err) {
       console.error(err);

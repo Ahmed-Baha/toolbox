@@ -5,29 +5,9 @@ const mongoose = require('mongoose')
 const Campground = require('./models/campgrounds')
 const cors = require('cors')
 const axios = require("axios")
-const allowedOrigins =
-  process.env.NODE_ENV === 'production'
-    ? ['https://toolbox2-seven.vercel.app']
-    : ['http://localhost:5173', 'http://localhost:3000']
-
-
-
-
 
 // Configure CORS with environment variable
-app.use(cors(
-  {
-  origin: function(origin, callback) {
-    // allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      return callback(new Error('The CORS policy for this site does not allow access from the specified Origin.'), false);
-    }
-    return callback(null, true);
-  },
-  credentials: true
-}
-))
+app.use(cors())
 app.use(express.json())
 
 // Connect to MongoDB
@@ -131,3 +111,4 @@ app.get('/api/health', (req, res) => {
 });
 module.exports = app;
 // Do not call app.listen here! Vercel will handle the serverless function export.
+app.listen(process.env.PORT,()=>console.log('server is listening'))
