@@ -1,13 +1,15 @@
 import { useEffect,useState } from "react";
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3003';
-
+import api from '../api/client'
 export default function DisplayPage(){
      const [customers, setCustomers] = useState([]);
      useEffect(()=>{
-    axios
-    .get(`${API_URL}/api`)
+    api
+    .get('/api')
+
+
+
     .then((res)=>{console.log(res);setCustomers(res.data)})
     .catch((e)=>{console.log(e);
        })
