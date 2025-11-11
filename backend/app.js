@@ -16,17 +16,17 @@ const allowedOrigins =
 
 // Configure CORS with environment variable
 app.use(cors(
-//   {
-//   origin: function(origin, callback) {
-//     // allow requests with no origin (like mobile apps or curl requests)
-//     if (!origin) return callback(null, true);
-//     if (allowedOrigins.indexOf(origin) === -1) {
-//       return callback(new Error('The CORS policy for this site does not allow access from the specified Origin.'), false);
-//     }
-//     return callback(null, true);
-//   },
-//   credentials: true
-// }
+  {
+  origin: function(origin, callback) {
+    // allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      return callback(new Error('The CORS policy for this site does not allow access from the specified Origin.'), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true
+}
 ))
 app.use(express.json())
 
@@ -123,6 +123,11 @@ app.post("/api/elevation", async (req, res) => {
     console.error("Elevation API error:", err.message);
     res.status(500).json({ error: "Failed to fetch elevation data" });
   }
+});
+
+// Simple health check for Vercel serverless function readiness
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', uptime: process.uptime(), env: process.env.NODE_ENV || 'development' });
 });
 module.exports = app;
 // Do not call app.listen here! Vercel will handle the serverless function export.
