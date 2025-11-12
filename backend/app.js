@@ -111,4 +111,4 @@ app.get('/api/health', (req, res) => {
 });
 module.exports = app;
 // Do not call app.listen here! Vercel will handle the serverless function export.
-app.listen(process.env.PORT,()=>console.log('server is listening'))
+// app.listen(process.env.PORT,()=>console.log('server is listening'))
