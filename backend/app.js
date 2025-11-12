@@ -20,7 +20,7 @@ app.get('/',(req,res)=>{
   res.send('hello there')
 })
 
-app.get('/api/first',async (req,res)=>{
+app.get('/api/api/first',async (req,res)=>{
   try {
     // return all campgrounds
     const camps = await Campground.find({});
