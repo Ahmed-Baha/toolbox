@@ -2,7 +2,7 @@
 // Simple serverless entry for Vercel: import and export the Express app
 // Load local env when testing locally (Vercel provides env in production)
 // const serverless = require('serverless-http');
-require('dotenv').config()
+// require('dotenv').config()
 const app = require('../app')
 
 // Do not require non-existent local DB helper here — let the app handle DB
