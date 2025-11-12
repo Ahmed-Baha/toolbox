@@ -1,15 +1,14 @@
+// Serverless entry: export the Express app so Vercel can mount it.
+// This file intentionally keeps initialization minimal.
 require('dotenv').config()
+const app = require('../app')
 
-const app = require('./src/app')
-const { connect } = require('../src/config/db')
-
-// Try to connect to MongoDB when the function is initialized in serverless.
-// We don't throw here — if the connection isn't ready, route handlers should
-// handle DB errors gracefully. This ensures the connection is attempted
-// on cold-starts in Vercel serverless functions.
+// Optionally attempt to connect to MongoDB on cold start. If MONGODB_URI is
+// not set we log a warning and let request handlers manage DB errors.
 const MONGODB_URI = process.env.MONGODB_URI
 if (MONGODB_URI) {
-	connect(MONGODB_URI)
+	const mongoose = require('mongoose')
+	mongoose.connect(MONGODB_URI)
 		.then(() => console.log('Connected to MongoDB (serverless init)'))
 		.catch(err => console.error('MongoDB connection error (serverless init):', err))
 } else {

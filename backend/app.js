@@ -7,11 +7,17 @@ const cors = require('cors')
 const axios = require("axios")
 
 // Configure CORS with environment variable
+// Read allowed origins from env (comma separated). If empty, allow no-origin requests only.
+const allowedOrigins = (process.env.CORS_ORIGIN || '')
+  .split(',')
+  .map(s => s.trim())
+  .filter(Boolean)
+
 app.use(cors({
   origin: function(origin, callback) {
     // allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
+    if (allowedOrigins.length && allowedOrigins.indexOf(origin) === -1) {
       return callback(new Error('The CORS policy for this site does not allow access from the specified Origin.'), false);
     }
     return callback(null, true);
@@ -123,5 +129,9 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', uptime: process.uptime(), env: process.env.NODE_ENV || 'development' });
 });
 module.exports = app;
-// Do not call app.listen here! Vercel will handle the serverless function export.
-app.listen(process.env.PORT,()=>console.log('server is listening'))
+// Do not call app.listen unconditionally here — Vercel will handle the serverless function export.
+// When running locally (node app.js) allow the app to start the server.
+if (require.main === module) {
+  const port = process.env.PORT || 3003
+  app.listen(port, () => console.log(`server is listening on ${port}`))
+}
