@@ -7,7 +7,17 @@ const cors = require('cors')
 const axios = require("axios")
 
 // Configure CORS with environment variable
-app.use(cors())
+app.use(cors({
+  origin: function(origin, callback) {
+    // allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      return callback(new Error('The CORS policy for this site does not allow access from the specified Origin.'), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true
+}))
 app.use(express.json())
 
 // Connect to MongoDB
